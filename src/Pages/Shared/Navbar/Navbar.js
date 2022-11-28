@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
     const menuItems = <React.Fragment>
-        <li><Link>Home</Link></li>
-        <li><Link>Products</Link></li>
-        <li><Link>Blog</Link></li>
+        <li><Link to='/'>Home</Link></li>
+        <li><Link to='/'>Products</Link></li>
+        <li><Link to='/blog'>Blog</Link></li>
     </React.Fragment>
   return (
     <div className="navbar rounded-lg bg-base-200 flex justify-between">

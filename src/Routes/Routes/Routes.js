@@ -1,5 +1,6 @@
 import React from 'react';
 import Main from "../../Layouts/Main/Main";
+import Blog from '../../Pages/Blog/Blog';
 import Home from "../../Pages/Home/Home/Home";
 import Phones from '../../Pages/Phones/Phones';
 
@@ -19,6 +20,10 @@ const Routes = createBrowserRouter([
                 path: '/category/:brand',
                 element: <Phones></Phones>,
                 loader: ({params}) => fetch(`http://localhost:5000/phones/${params.brand}`)
+            },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
             }
         ]
     }

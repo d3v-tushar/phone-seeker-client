@@ -30,6 +30,7 @@ const PhoneCards = ({phone}) => {
                 <p className='text-md semi-bold'>Original Price: ${originalPrice}</p>
                 <p className='text-md semi-bold'>Usage Duration: {UsageDuration} Months</p>
                 <p className='text-md semi-bold'>Posted On: {postedTime}</p>
+				
 			</div>
 		</div>
 		{/* <div className="space-y-3">
