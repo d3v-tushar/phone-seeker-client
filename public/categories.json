@@ -1,0 +1,14 @@
+[
+    {
+        "brand": "Apple",
+        "category": "apple"
+    },
+    {
+        "brand": "Samsung",
+        "category": "samsung"
+    },
+    {
+        "brand": "OnePlus",
+        "category": "samsung"
+    }
+]

@@ -1,0 +1,62 @@
+[
+    {
+        "name": "iPhone 14 Pro Max",
+        "image": "https://www.mobiledokan.com/wp-content/uploads/2022/09/Apple-iPhone-14-Pro-Max.jpg",
+        "location": "Dhaka, Bangladesh",
+        "resellPrice": 700,
+        "originalPrice": 1200,
+        "UsageDuration": 1.6,
+        "postedTime": "11/28/2022, 5:12:26 AM",
+        "sellerName": "Rashed Seller",
+        "verified": true,
+        "category": "apple"
+    },
+    {
+        "name": "iPhone 13 Mini",
+        "image": "https://www.mobiledokan.com/wp-content/uploads/2022/09/Apple-iPhone-14-Pro-Max.jpg",
+        "location": "Dhaka, Bangladesh",
+        "resellPrice": 400,
+        "originalPrice": 7000,
+        "UsageDuration": 6,
+        "postedTime": "11/28/2022, 5:12:26 AM",
+        "sellerName": "Rashed Seller",
+        "verified": true,
+        "category": "apple"
+    },
+    {
+        "name": "iPhone X",
+        "image": "https://www.mobiledokan.com/wp-content/uploads/2022/09/Apple-iPhone-14-Pro-Max.jpg",
+        "location": "Dhaka, Bangladesh",
+        "resellPrice": 350,
+        "originalPrice": 1000,
+        "UsageDuration": 24,
+        "postedTime": "11/28/2022, 5:12:26 AM",
+        "sellerName": "Rashed Seller",
+        "verified": true,
+        "category": "apple"
+    },
+    {
+        "name": "Samsung S22 FE",
+        "image": "https://www.mobiledokan.com/wp-content/uploads/2022/09/Apple-iPhone-14-Pro-Max.jpg",
+        "location": "Dhaka, Bangladesh",
+        "resellPrice": 500,
+        "originalPrice": 900,
+        "UsageDuration": 1.6,
+        "postedTime": "11/28/2022, 5:12:26 AM",
+        "sellerName": "Shorif Seller",
+        "verified": false,
+        "category": "samsung"
+    },
+    {
+        "name": "OnePlus 9T Pro",
+        "image": "https://www.mobiledokan.com/wp-content/uploads/2022/09/Apple-iPhone-14-Pro-Max.jpg",
+        "location": "Dhaka, Bangladesh",
+        "resellPrice": 400,
+        "originalPrice": 60000,
+        "UsageDuration": 1.6,
+        "postedTime": "11/28/2022, 5:12:26 AM",
+        "sellerName": "Rubel Seller",
+        "verified": true,
+        "category": "oneplus"
+    }
+]
