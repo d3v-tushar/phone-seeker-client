@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -55,7 +56,7 @@ const Footer = () => {
         </div>
       </div>
       <div>
-        <p>Copyright © 2022 - All right reserved by ACME Industries Ltd</p>
+        <p>Copyright © 2022 - All right reserved by <Link to='/'>Phone Seeker Ltd</Link> </p>
       </div>
     </footer>
   );

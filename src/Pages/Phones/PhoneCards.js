@@ -2,9 +2,9 @@ import React from 'react';
 import { MdVerified } from "react-icons/md";
 
 const PhoneCards = ({phone}) => {
-    const {name, image, location, sellerName, resellPrice} = phone;
+    const {name, image, location, sellerName, resellPrice, originalPrice, UsageDuration, postedTime} = phone;
     return (
-        <div className="rounded-md shadow-md sm:w-96 bg-gray-900 text-gray-100">
+        <div className="rounded-md shadow-md bg-gray-900 text-gray-100">
 	<div className="flex items-center justify-between p-3">
 		<div className="flex items-center space-x-2">
 			<img src="https://source.unsplash.com/50x50/?portrait" alt="" className="object-cover object-center w-8 h-8 rounded-full shadow-sm bg-gray-500 border-gray-700" />
@@ -23,10 +23,13 @@ const PhoneCards = ({phone}) => {
 	</div>
 	<img src={image} alt="" className="object-cover object-center w-full h-72 my-4 bg-gray-500" />
 	<div className="p-3">
-		<div className="pt-3 pb-1">
-			<div className="flex items-center">
-				<h3 className='text-xl'>{name}</h3> <br />
-                <h4 className='text-md semi-bold'>Resell Price: ${resellPrice}</h4>
+		<div className="py-1">
+			<div className="grid items-center">
+				<h3 className='text-xl'>{name}</h3>
+                <p className='text-md semi-bold'>Resell Price: ${resellPrice}</p>
+                <p className='text-md semi-bold'>Original Price: ${originalPrice}</p>
+                <p className='text-md semi-bold'>Usage Duration: {UsageDuration} Months</p>
+                <p className='text-md semi-bold'>Posted On: {postedTime}</p>
 			</div>
 		</div>
 		{/* <div className="space-y-3">
