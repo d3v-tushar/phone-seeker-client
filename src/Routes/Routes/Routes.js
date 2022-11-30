@@ -3,6 +3,7 @@ import Main from "../../Layouts/Main/Main";
 import Blog from '../../Pages/Blog/Blog';
 import Home from "../../Pages/Home/Home/Home";
 import Phones from '../../Pages/Phones/Phones';
+import Register from '../../Pages/Register/Register';
 
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -24,6 +25,10 @@ const Routes = createBrowserRouter([
             {
                 path: '/blog',
                 element: <Blog></Blog>
+            },
+            {
+                path: '/register',
+                element: <Register></Register>
             }
         ]
     }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { MdVerified } from "react-icons/md";
 
-const PhoneCards = ({phone}) => {
+const PhoneCards = ({phone, setBooking}) => {
     const {name, image, location, sellerName, resellPrice, originalPrice, UsageDuration, postedTime} = phone;
     return (
         <div className="rounded-md shadow-md bg-gray-900 text-gray-100">
@@ -30,7 +30,7 @@ const PhoneCards = ({phone}) => {
                 <p className='text-md semi-bold'>Original Price: ${originalPrice}</p>
                 <p className='text-md semi-bold'>Usage Duration: {UsageDuration} Months</p>
                 <p className='text-md semi-bold'>Posted On: {postedTime}</p>
-				
+				<label onClick={() => setBooking(phone)} htmlFor="my-modal-3" className="btn btn-sm my-4">Book This Phone</label>
 			</div>
 		</div>
 		{/* <div className="space-y-3">
