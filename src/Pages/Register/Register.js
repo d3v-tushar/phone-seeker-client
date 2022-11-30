@@ -1,14 +1,12 @@
 import React, { useContext, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 import { useTitle } from "../../CustomHook/useTitle";
 
-const Register = () => {
-  useTitle('Register - ')
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+const Signup = () => {
+  useTitle("Register - ")
   const { newUserRegister, signInWithGoogle, updateUserProfileData } =
     useContext(AuthContext);
   const [error, setError] = useState(false);
@@ -16,6 +14,9 @@ const Register = () => {
   const [success, setSuccess] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -51,9 +52,7 @@ const Register = () => {
         updateProfile(name, photo);
         form.reset();
         setSuccess(true);
-        //setJsonToken(user);
-        navigate(from, { replace: true });
-        toast('Registration Successfull!')
+        navigate("/home");
       })
       .catch((error) => {
         console.error(error.message);
@@ -84,7 +83,7 @@ const Register = () => {
     setAcceptTerms(e.target.checked);
   };
   return (
-    <div className="w-full mx-auto max-w-md p-4  rounded-md shadow sm:p-8 bg-base-200 mt-4 text-gray-100">
+    <div className="w-full mx-auto max-w-md p-4 rounded-md shadow mt-4 sm:p-8 bg-gray-900 text-gray-100">
 
         {error && (
           <div className="alert alert-error shadow-lg">
@@ -128,13 +127,13 @@ const Register = () => {
           </div>
         )}
 
-        <h2 className="mb-3 text-3xl text-black font-semibold text-center">
-                Signup Today!
+        <h2 className="mb-3 text-3xl font-semibold text-center">
+                Please Register!
             </h2>
       <form onSubmit={handleRegister} className="card-body">
 <div className="form-control">
   <label className="label">
-    <span className="label-text">Name</span>
+    <span className="label-text text-white">Name</span>
   </label>
   <input
     type="text"
@@ -146,7 +145,7 @@ const Register = () => {
 </div>
 <div className="form-control">
   <label className="label">
-    <span className="label-text">Photo URL</span>
+    <span className="label-text text-white">Photo URL</span>
   </label>
   <input
     type="text"
@@ -158,7 +157,7 @@ const Register = () => {
 </div>
 <div className="form-control">
   <label className="label">
-    <span className="label-text">Email</span>
+    <span className="label-text text-white">Email</span>
   </label>
   <input
     type="email"
@@ -170,7 +169,7 @@ const Register = () => {
 </div>
 <div className="form-control">
   <label className="label">
-    <span className="label-text">Password</span>
+    <span className="label-text text-white">Password</span>
   </label>
   <input
     type="password"
@@ -179,8 +178,15 @@ const Register = () => {
     required
     className="input input-bordered"
   />
+{/* Buyer - Seller Account Type Selection */}
+<h3 className="label-text text-white mt-4 mb-1">Select Account Type</h3>
+<select className="select select-primary w-full mb-3 text-black">
+  <option className="text-md font-semibold" defaultValue={'Buyer'}>BUYER</option>
+  <option className="text-md font-semibold">SELLER</option>
+</select>
+
   <label className="label">
-    <Link to="/login" className="label-text-alt link link-hover">
+    <Link to="/login" className="label-text-alt link link-hover text-white">
       Already have a account?
     </Link>
   </label>
@@ -196,7 +202,7 @@ const Register = () => {
   />
   <label
     htmlFor="link-checkbox"
-    className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+    className="ml-2 text-sm font-medium text-gray-900 dark:text-white"
   >
     I Accept{" "}
     <a
@@ -211,8 +217,8 @@ const Register = () => {
 </div>
 
 <div className="form-control mt-2">
-  <button className="btn btn-primary" disabled={!acceptTerms}>
-    Register
+  <button className="btn btn-primary text-white" disabled={!acceptTerms}>
+    Create Account
   </button>
 </div>
 </form>
@@ -244,4 +250,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Signup;
