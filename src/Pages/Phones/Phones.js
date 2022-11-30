@@ -5,7 +5,7 @@ import PhoneCards from './PhoneCards';
 
 const Phones = () => {
     const phones = useLoaderData();
-    const [booking, setBooking] = useState({});
+    const [booking, setBooking] = useState(null);
     return (
         <section>
             <div className='my-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
@@ -13,7 +13,13 @@ const Phones = () => {
                 phones.map((phone, index) => <PhoneCards key={index} phone={phone} setBooking={setBooking}></PhoneCards>)
             }
         </div>
-        <BookingModal booking={booking}></BookingModal>
+        {
+            booking &&
+            <BookingModal 
+            booking={booking}
+            setBooking={setBooking}
+            ></BookingModal>
+        }
         </section>
     );
 };

@@ -25,6 +25,7 @@ const Signup = () => {
     const photo = form.photo.value;
     const email = form.email.value;
     const password = form.password.value;
+    const accountType = 
     console.log(name, email, password);
 
     //Password Validation (Regular Expression)
@@ -152,7 +153,7 @@ const Signup = () => {
     placeholder="Put url Here"
     name="photo"
     required
-    className="input input-bordered"
+    className="input input-bordered text-black"
   />
 </div>
 <div className="form-control">
@@ -164,7 +165,7 @@ const Signup = () => {
     placeholder="email"
     name="email"
     required
-    className="input input-bordered"
+    className="input input-bordered text-black"
   />
 </div>
 <div className="form-control">
@@ -176,7 +177,7 @@ const Signup = () => {
     placeholder="password"
     name="password"
     required
-    className="input input-bordered"
+    className="input input-bordered text-black"
   />
 {/* Buyer - Seller Account Type Selection */}
 <h3 className="label-text text-white mt-4 mb-1">Select Account Type</h3>

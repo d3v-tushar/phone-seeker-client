@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
 import { useTitle } from "../../CustomHook/useTitle";
 
-const BookingModal = ({booking}) => {
+const BookingModal = ({booking, setBooking}) => {
     useTitle('Booking - ')
     const {user} = useContext(AuthContext);
     const {name, resellPrice} = booking;
@@ -17,6 +17,7 @@ const BookingModal = ({booking}) => {
         const phone = form.phone.value;
         const bookingDetails = {name, email, item, price, location, phone};
         console.log(bookingDetails);
+        setBooking(null);
     }
   return (
     <>
