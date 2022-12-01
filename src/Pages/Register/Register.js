@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/AuthProvider";
 import { useTitle } from "../../CustomHook/useTitle";
 
@@ -47,6 +48,7 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        toast('Account Created Successfully');
         const userInfo = {
           displayName: name
         };
@@ -144,7 +146,7 @@ const Signup = () => {
     placeholder="name"
     name="name"
     required
-    className="input input-bordered"
+    className="input input-bordered text-black"
   />
 </div>
 <div className="form-control">

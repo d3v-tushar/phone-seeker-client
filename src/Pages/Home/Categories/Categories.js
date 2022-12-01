@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useEffect, useState } from 'react';
+//import React, { useEffect, useState } from 'react';
 import Category from './Category';
 
 const Categories = () => {
     // const [categories, setCategories] = useState([]);
 
     const {data:categories = []} = useQuery({
-        queryKey: ['phones'],
+        queryKey: ['categories'],
         queryFn: () => fetch(`categories.json`)
         .then(res => res.json())
     });
