@@ -1,13 +1,11 @@
 import React, { useContext, useState } from "react";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 import { useTitle } from "../../CustomHook/useTitle";
 
 const Signup = () => {
   useTitle("Register - ")
-  const { newUserRegister, signInWithGoogle, updateUserProfileData } =
+  const { newUserRegister, signInWithGoogle, updateUser } =
     useContext(AuthContext);
   const [error, setError] = useState(false);
   const [passwordError, setPasswordError] = useState("");
@@ -22,10 +20,10 @@ const Signup = () => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
-    const photo = form.photo.value;
+    //const photo = form.photo.value;
     const email = form.email.value;
     const password = form.password.value;
-    const accountType = 
+    //const accountType = 
     console.log(name, email, password);
 
     //Password Validation (Regular Expression)
@@ -49,11 +47,17 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        const userInfo = {
+          displayName: name
+        };
+        updateUser(userInfo)
+        .then(() => {})
+        .catch(error => console.error(error))
         setError(false);
-        updateProfile(name, photo);
+        //updateProfile(name, photo);
         form.reset();
         setSuccess(true);
-        navigate("/home");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error.message);
@@ -61,14 +65,14 @@ const Signup = () => {
       });
   };
 
-  const updateProfile = (name, photo) => {
-    updateUserProfileData(name, photo)
-      .then(() => console.log("Registration Done!"))
-      .catch((error) => {
-        console.error(error.message);
-        setPasswordError(error.message);
-      });
-  };
+  // const updateProfile = (name, photo) => {
+  //   updateUser(name, photo)
+  //     .then(() => console.log("Registration Done!"))
+  //     .catch((error) => {
+  //       console.error(error.message);
+  //       setPasswordError(error.message);
+  //     });
+  // };
 
   const handleGoogleSignIn = () =>{
     signInWithGoogle()
@@ -84,7 +88,10 @@ const Signup = () => {
     setAcceptTerms(e.target.checked);
   };
   return (
-    <div className="w-full mx-auto max-w-md p-4 rounded-md shadow mt-4 sm:p-8 bg-gray-900 text-gray-100">
+    <div className="w-full mx-auto max-w-lg p-4 rounded-md shadow mt-4 sm:p-8 bg-gray-900 text-gray-100">
+      <h2 className="mb-2 text-3xl font-semibold text-center">
+                Please Register!
+            </h2>
 
         {error && (
           <div className="alert alert-error shadow-lg">
@@ -127,10 +134,6 @@ const Signup = () => {
             </div>
           </div>
         )}
-
-        <h2 className="mb-3 text-3xl font-semibold text-center">
-                Please Register!
-            </h2>
       <form onSubmit={handleRegister} className="card-body">
 <div className="form-control">
   <label className="label">
@@ -152,7 +155,7 @@ const Signup = () => {
     type="text"
     placeholder="Put url Here"
     name="photo"
-    required
+    
     className="input input-bordered text-black"
   />
 </div>
@@ -246,7 +249,6 @@ const Signup = () => {
           <p>Login with Google</p>
         </button>
       </div>
-      <ToastContainer />
     </div>
   );
 };

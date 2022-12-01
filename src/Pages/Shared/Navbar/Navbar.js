@@ -9,9 +9,13 @@ const Navbar = () => {
   };
     const menuItems = <React.Fragment>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='/'>Dashboard</Link></li>
         <li><Link to='/blog'>Blog</Link></li>
-        {user?.uid ? <li><button onClick={handleLogot}>Logout</button></li> : <li><Link to='/login'>Login</Link></li>}
+        {user?.uid ? 
+        <>
+        <li><Link to='/dashboard'>Dashboard</Link></li>
+        <li><button onClick={handleLogot}>Logout</button></li>
+        </> : 
+        <li><Link to='/login'>Login</Link></li>}
     </React.Fragment>
   return (
     <div className="navbar rounded-lg bg-base-200 flex justify-between">

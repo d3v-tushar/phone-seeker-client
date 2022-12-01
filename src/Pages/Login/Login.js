@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+  import { toast } from 'react-toastify';
 import { useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
@@ -45,6 +46,16 @@ const Login = () => {
       .catch((error) => {
         console.error(error.message);
         setPasswordError(error.message);
+        toast.error(error.message, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
       });
   };
 
@@ -61,6 +72,9 @@ const Login = () => {
 
   return (
     <div className="w-full mx-auto max-w-md p-4 my-5 rounded-md shadow sm:p-8 bg-gray-900 text-gray-100">
+        <h2 className="mb-3 text-3xl font-semibold text-center">
+        Login to your account
+      </h2>
             {
                 error && 
                     <div className="alert alert-error shadow-lg">
@@ -70,9 +84,6 @@ const Login = () => {
                     </div>
                     </div>
             }
-      <h2 className="mb-3 text-3xl font-semibold text-center">
-        Login to your account
-      </h2>
       <form
         onSubmit={handleSubmit}
         action=""
