@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/AuthProvider";
+import { getUserToken } from "../../CustomHook/JwtToken";
 import { useTitle } from "../../CustomHook/useTitle";
 
 const Signup = () => {
@@ -91,6 +92,7 @@ const Signup = () => {
     .then(res => res.json())
     .then(data =>{
       console.log(data);
+      getUserToken(email);
       navigate('/');
     })
   }
