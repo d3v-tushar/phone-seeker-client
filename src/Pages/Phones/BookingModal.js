@@ -6,7 +6,7 @@ import { useTitle } from "../../CustomHook/useTitle";
 const BookingModal = ({booking, setBooking}) => {
     useTitle('Booking - ')
     const {user} = useContext(AuthContext);
-    const {name, resellPrice} = booking;
+    const {name, resellPrice, image} = booking;
     const handleSubmit = (e) =>{
         e.preventDefault();
         const form = e.target;
@@ -16,7 +16,7 @@ const BookingModal = ({booking, setBooking}) => {
         const price = form.price.value;
         const location = form.location.value;
         const phone = form.phone.value;
-        const bookingData = {name, email, item, price, location, phone};
+        const bookingData = {image, name, email, item, price, location, phone};
         console.log(bookingData);
         fetch('http://localhost:5000/bookings',{
             method: 'POST',

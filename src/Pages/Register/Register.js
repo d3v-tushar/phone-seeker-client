@@ -56,10 +56,10 @@ const Signup = () => {
         .then(() => {})
         .catch(error => console.error(error))
         setError(false);
-        //updateProfile(name, photo);
         form.reset();
         setSuccess(true);
-        navigate(from, { replace: true });
+        saveUser(name, email)
+        // navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error.message);
@@ -67,15 +67,7 @@ const Signup = () => {
       });
   };
 
-  // const updateProfile = (name, photo) => {
-  //   updateUser(name, photo)
-  //     .then(() => console.log("Registration Done!"))
-  //     .catch((error) => {
-  //       console.error(error.message);
-  //       setPasswordError(error.message);
-  //     });
-  // };
-
+  //Google SignIn
   const handleGoogleSignIn = () =>{
     signInWithGoogle()
       .then((result) => {
@@ -84,6 +76,23 @@ const Signup = () => {
         navigate(from, { replace: true });
       })
       .catch((error) => console.error(error.message));
+  };
+
+  //Save User Info To DB
+  const saveUser = (name, email) =>{
+    const user = {name, email};
+    fetch('http://localhost:5000/users', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+    .then(res => res.json())
+    .then(data =>{
+      console.log(data);
+      navigate('/');
+    })
   }
 
   const handleTerms = (e) => {
