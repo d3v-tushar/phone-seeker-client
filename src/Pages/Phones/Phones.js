@@ -1,10 +1,12 @@
 //import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { useTitle } from '../../CustomHook/useTitle';
 import BookingModal from './BookingModal';
 import PhoneCards from './PhoneCards';
 
 const Phones = () => {
+    useTitle('Devices - ')
     const phones = useLoaderData();
     const [booking, setBooking] = useState(null);
 
