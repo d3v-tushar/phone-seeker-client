@@ -12,7 +12,7 @@ const Phones = () => {
 
     // const {data, isLoading} = useQuery({
     //     queryKey: ['phones'],
-    //     queryFn: () => fetch(`http://localhost:5000/phones/${params.brand}`)
+    //     queryFn: () => fetch(`https://phone-seeker-server.vercel.app/phones/${params.brand}`)
     //     .then(res => res.json())
     // });
     return (

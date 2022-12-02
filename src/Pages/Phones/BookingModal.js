@@ -18,7 +18,7 @@ const BookingModal = ({booking, setBooking}) => {
         const phone = form.phone.value;
         const bookingData = {image, name, email, item, price, location, phone};
         console.log(bookingData);
-        fetch('http://localhost:5000/bookings',{
+        fetch('https://phone-seeker-server.vercel.app/bookings',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

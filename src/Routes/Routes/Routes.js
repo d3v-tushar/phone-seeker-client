@@ -24,7 +24,7 @@ const Routes = createBrowserRouter([
             {
                 path: '/category/:brand',
                 element: <PrivateRoute><Phones></Phones></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/phones/${params.brand}`)
+                loader: ({params}) => fetch(`https://phone-seeker-server.vercel.app/phones/${params.brand}`)
             },
             {
                 path: '/blog',
