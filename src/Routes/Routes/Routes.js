@@ -7,6 +7,7 @@ import AllUsers from '../../Pages/Dashboard/AllUsers/AllUsers';
 import Dashboard from '../../Pages/Dashboard/Dashboard/Dashboard';
 import Home from "../../Pages/Home/Home/Home";
 import Login from '../../Pages/Login/Login';
+import NotFound from '../../Pages/NotFound/NotFound';
 import Phones from '../../Pages/Phones/Phones';
 import Register from '../../Pages/Register/Register';
 import AdminRoute from '../AdminRoute/AdminRoute';
@@ -60,6 +61,10 @@ const Routes = createBrowserRouter([
                 element: <AddPhone></AddPhone>
             }
         ]
+    },
+    {
+        path: '*',
+        element: <NotFound></NotFound>
     }
     
 ]);
