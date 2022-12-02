@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../../Context/AuthProvider";
 
 const AddPhone = () => {
+const {user} = useContext(AuthContext);
+
     const handleAddPhone = (e) =>{
         e.preventDefault();
         const form = e.target;
@@ -15,11 +18,12 @@ const AddPhone = () => {
         const resellPrice = form.productPrice.value;
         const yearofpurchase = form.yearofpurchase.value;
         const postedTime = new Date().toLocaleString();
-        const image = form.image.value
+        const image = form.image.value;
+        const sellerName = user.displayName;
 
         console.log(name, originalPrice, condition, mobileNumber, location, category, description, resellPrice, yearofpurchase, postedTime, image);
 
-        const phone = {name, originalPrice, condition, mobileNumber, location, category, description, resellPrice, yearofpurchase, postedTime, image};
+        const phone = {name, originalPrice, condition, mobileNumber, location, category, description, resellPrice, yearofpurchase, postedTime, image, sellerName};
 
         fetch('https://phone-seeker-server.vercel.app/phones', {
             method: 'POST',
@@ -32,6 +36,7 @@ const AddPhone = () => {
         .then(data =>{
             if(data.acknowledged){
                 toast.success('Phone Added Successfully');
+                form.reset();
             }
         })
     };
