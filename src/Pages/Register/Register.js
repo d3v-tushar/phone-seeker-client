@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/AuthProvider";
-import { getUserToken } from "../../CustomHook/JwtToken";
+//import { getUserToken } from "../../CustomHook/JwtToken";
 import { useTitle } from "../../CustomHook/useTitle";
+import useToken from "../../CustomHook/useToken";
+
 
 const Signup = () => {
   useTitle("Register - ")
@@ -14,19 +16,22 @@ const Signup = () => {
   const [success, setSuccess] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  const [createdUserEmail, setCreatedUserEmail] = useState('');
+  const [token] = useToken(createdUserEmail);
+
+  if(token){
+    navigate('/');
+  }
 
 
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
-    //const photo = form.photo.value;
     const email = form.email.value;
     const password = form.password.value;
-    //const accountType = 
-    console.log(name, email, password);
+    const role = form.accountType.value;
+    console.log(name, email, password, role);
 
     //Password Validation (Regular Expression)
     if (!/(?=.*[A-Z])/.test(password)) {
@@ -59,8 +64,7 @@ const Signup = () => {
         setError(false);
         form.reset();
         setSuccess(true);
-        saveUser(name, email)
-        // navigate(from, { replace: true });
+        saveUser(name, email, role)
       })
       .catch((error) => {
         console.error(error.message);
@@ -74,14 +78,14 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate(from, { replace: true });
+        saveUser(user.displayName, user.email, 'Buyer');
       })
       .catch((error) => console.error(error.message));
   };
 
   //Save User Info To DB
-  const saveUser = (name, email) =>{
-    const user = {name, email};
+  const saveUser = (name, email, role) =>{
+    const user = {name, email, role};
     fetch('https://phone-seeker-server.vercel.app/users', {
       method: 'POST',
       headers: {
@@ -92,10 +96,9 @@ const Signup = () => {
     .then(res => res.json())
     .then(data =>{
       console.log(data);
-      getUserToken(email);
-      navigate('/');
+      setCreatedUserEmail(email);
     })
-  }
+  };
 
   const handleTerms = (e) => {
     setAcceptTerms(e.target.checked);
@@ -160,18 +163,7 @@ const Signup = () => {
     className="input input-bordered text-black"
   />
 </div>
-<div className="form-control">
-  <label className="label">
-    <span className="label-text text-white">Photo URL</span>
-  </label>
-  <input
-    type="text"
-    placeholder="Put url Here"
-    name="photo"
-    
-    className="input input-bordered text-black"
-  />
-</div>
+
 <div className="form-control">
   <label className="label">
     <span className="label-text text-white">Email</span>
@@ -197,9 +189,9 @@ const Signup = () => {
   />
 {/* Buyer - Seller Account Type Selection */}
 <h3 className="label-text text-white mt-4 mb-1">Select Account Type</h3>
-<select className="select select-primary w-full mb-3 text-black">
-  <option className="text-md font-semibold" defaultValue={'Buyer'}>BUYER</option>
-  <option className="text-md font-semibold">SELLER</option>
+<select name="accountType" className="select select-primary w-full mb-3 text-black">
+  <option className="text-md font-semibold" defaultValue={'Buyer'}>Buyer</option>
+  <option className="text-md font-semibold">Seller</option>
 </select>
 
   <label className="label">

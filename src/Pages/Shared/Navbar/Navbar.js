@@ -6,6 +6,7 @@ const Navbar = () => {
   const {user, logOut} = useContext(AuthContext);
   const handleLogot = () =>{
     logOut().then(() => {}).catch(error => console.log(error))
+    localStorage.removeItem('accessToken');
   };
     const menuItems = <React.Fragment>
         <li><Link to='/'>Home</Link></li>

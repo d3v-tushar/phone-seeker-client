@@ -3,15 +3,22 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
+import useToken from "../../CustomHook/useToken";
 
 const Login = () => {
   const { signInExistingUser, signInWithGoogle } =
     useContext(AuthContext);
   const navigate = useNavigate();
   const [passwordError, setPasswordError] = useState("");
+  const [loginUserEmail, setLoginUserEmail] = useState('');
+  const [token] = useToken(loginUserEmail);
   const [error, setError] = useState(false);
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+
+  if(token){
+    navigate(from, { replace: true });
+  };
 
   //Email Password Login
   const handleSubmit = (e) => {
@@ -41,7 +48,8 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate(from, { replace: true });
+        setLoginUserEmail(user.email);
+        
       })
       .catch((error) => {
         console.error(error.message);
@@ -65,10 +73,28 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate(from, { replace: true });
+        setLoginUserEmail(user.email);
+        saveUser(user.displayName, user.email, 'Buyer');
       })
       .catch((error) => console.error(error.message));
   };
+
+ //Save User Info To DB
+ const saveUser = (name, email, role) =>{
+  const user = {name, email, role};
+  fetch('https://phone-seeker-server.vercel.app/users', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(user)
+  })
+  .then(res => res.json())
+  .then(data =>{
+    console.log(data);
+    setLoginUserEmail(email);
+  })
+};
 
   return (
     <div className="w-full mx-auto max-w-md p-4 my-5 rounded-md shadow sm:p-8 bg-gray-900 text-gray-100">
