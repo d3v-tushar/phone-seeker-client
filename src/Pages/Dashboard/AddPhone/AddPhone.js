@@ -20,10 +20,12 @@ const {user} = useContext(AuthContext);
         const postedTime = new Date().toLocaleString();
         const image = form.image.value;
         const sellerName = user.displayName;
+        const sellerEmail = user.email;
+        const sellerPhoto = user.photoURL;
 
         console.log(name, originalPrice, condition, mobileNumber, location, category, description, resellPrice, yearofpurchase, postedTime, image);
 
-        const phone = {name, originalPrice, condition, mobileNumber, location, category, description, resellPrice, yearofpurchase, postedTime, image, sellerName};
+        const phone = {name, originalPrice, condition, mobileNumber, location, category, description, resellPrice, yearofpurchase, postedTime, image, sellerName, sellerEmail, sellerPhoto};
 
         fetch('https://phone-seeker-server.vercel.app/phones', {
             method: 'POST',
@@ -43,7 +45,7 @@ const {user} = useContext(AuthContext);
 
   return (
     <div className="grid justify-center gap-6 mx-auto">
-      <h2 className="text-3xl text-center">Add Phone</h2>
+      <h2 className="text-3xl text-center my-4">Add Phone</h2>
       <form onSubmit={handleAddPhone} className="grid grid-cols-2 gap-8">
         <div className="form-control w-full max-w-xs">
           <label className="label">

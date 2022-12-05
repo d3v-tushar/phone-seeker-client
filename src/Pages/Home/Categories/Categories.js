@@ -6,17 +6,10 @@ const Categories = () => {
     // const [categories, setCategories] = useState([]);
 
     const {data:categories = []} = useQuery({
-        queryKey: ['categories'],
+        queryKey: ['https://phone-seeker-server.vercel.app//categories'],
         queryFn: () => fetch(`categories.json`)
         .then(res => res.json())
     });
-
-    // useEffect(() =>{
-    //     fetch('categories.json')
-    //     .then(res => res.json())
-    //     .then(data => setCategories(data))
-    // }, []);
-    // console.log(categories);
     return (
         <div>
             <h2 className='text-3xl bold text-center'>Categories Section</h2>

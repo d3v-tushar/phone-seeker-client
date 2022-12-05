@@ -1,9 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { toast } from 'react-toastify';
 
 const AllUsers = () => {
-    const {data: users = [], refetch} = useQuery({
+    const {data: users = []} = useQuery({
         queryKey: ['users'],
         queryFn: async() =>{
             const res = await fetch('https://phone-seeker-server.vercel.app/users');
@@ -11,23 +10,22 @@ const AllUsers = () => {
             return data;
         }
     });
-    console.log(users);
 
-    const handleMakeAdmin = id =>{
-        fetch(`https://phone-seeker-server.vercel.app/users/admin/${id}`, {
-            method: 'PUT',
-            headers: {
-                authorization: `bearer ${localStorage.getItem('accessToken')}`
-            }
-        })
-        .then(res => res.json())
-        .then(data =>{
-            if(data.modifiedCount > 0){
-                toast.success('Make Admin Successful');
-                refetch();
-            }
-        })
-    };
+    // const handleMakeAdmin = id =>{
+    //     fetch(`https://phone-seeker-server.vercel.app/users/admin/${id}`, {
+    //         method: 'PUT',
+    //         headers: {
+    //             authorization: `bearer ${localStorage.getItem('accessToken')}`
+    //         }
+    //     })
+    //     .then(res => res.json())
+    //     .then(data =>{
+    //         if(data.modifiedCount > 0){
+    //             toast.success('Verification Successfull');
+    //             refetch();
+    //         }
+    //     })
+    // };
 
     return (
         <div>
@@ -41,8 +39,7 @@ const AllUsers = () => {
         <th></th>
         <th>Name</th>
         <th>Email</th>
-        <th>Admin</th>
-        <th>Status</th>
+        <th>Role</th>
       </tr>
     </thead>
     <tbody>
@@ -52,7 +49,7 @@ const AllUsers = () => {
         <th>{index+1}</th>
         <td>{user.name}</td>
         <td>{user.email}</td>
-        <td>{user?.role !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-primary'>Verified</button>}</td>
+        <td>{user?.role}</td>
       </tr>)
       }
     </tbody>

@@ -37,7 +37,7 @@ const MyOrders = () => {
             </tr>
           </thead>
           <tbody>
-            {bookings.map((booking, index) => (
+            {bookings.length > 0 && bookings.map((booking, index) => (
               <tr key={index}>
                 <td>
                   <div className="flex items-center space-x-3">
