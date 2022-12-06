@@ -1,14 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Context/AuthProvider";
+import LoadingSpinner from "../../Shared/LoadingSpinner/LoadingSpinner";
 
 const SellerProduct = () => {
-    const {user} = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   const [sellerProducts, setSellerProducts] = useState([]);
   useEffect(() => {
-    fetch(`https://phone-seeker-server.vercel.app/phones?sellerName=${user.displayName}`)
+    fetch(
+      `https://phone-seeker-server.vercel.app/phones?sellerName=${user.displayName}`
+    )
       .then((res) => res.json())
       .then((data) => setSellerProducts(data));
   }, [user]);
+
+  if(loading){
+    return (<LoadingSpinner></LoadingSpinner>)
+  }
   return (
     <div>
       <h2 className="text-3xl text-center my-8">My Products</h2>
@@ -25,9 +32,8 @@ const SellerProduct = () => {
             </thead>
             <tbody>
               {sellerProducts.map((products, index) => (
-                <th key={index}>
-                  <td>
-                    <div className="flex items-center space-x-3">
+                <tr key={index}>
+                  <th><div className="flex items-center space-x-3">
                       <div className="avatar">
                         <div className="mask mask-squircle h-32">
                           <img
@@ -40,14 +46,11 @@ const SellerProduct = () => {
                           />
                         </div>
                       </div>
-                    </div>
-                  </td>
-                  <td>{products.name}</td>
-                  <td>${products.resellPrice}</td>
-                  <th>
-                    <td>{products.condition? products.condition : "No Data"}</td>
-                  </th>
-                </th>
+                    </div></th>
+                  <th>{products.name}</th>
+                  <th>${products.resellPrice}</th>
+                  <th>{products.condition? products.condition : "No Data"}</th>
+                </tr>
               ))}
             </tbody>
           </table>
